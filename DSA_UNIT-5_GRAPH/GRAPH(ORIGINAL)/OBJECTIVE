@@ -1,0 +1,6 @@
+Objectives:
+•	Understand vertices, edges, and graph representation.
+•	Represent a graph using an adjacency list in C++.
+•	Display direct recommendations and count them for each book.
+•	Add and remove recommendation links dynamically.
+•	Find the book or books with the maximum number of direct recommendations.
