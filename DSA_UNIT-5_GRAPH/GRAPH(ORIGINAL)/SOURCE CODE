@@ -1,0 +1,198 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+vector<string> books;
+vector<vector<int>> adj;
+int n;
+
+// Find book index
+int findBook(string name)
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (books[i] == name)
+            return i;
+    }
+    return -1;
+}
+
+// Display recommendations
+void display()
+{
+    for (int i = 0; i < n; i++)
+    {
+        cout << books[i] << " recommends: ";
+
+        for (int j = 0; j < adj[i].size(); j++)
+            cout << books[adj[i][j]] << " ";
+
+        cout << "\nCount: " << adj[i].size() << "\n";
+    }
+}
+
+// Add recommendation
+void addLink()
+{
+    string a, b;
+    cout << "Enter two book names: ";
+    cin >> a >> b;
+
+    int u = findBook(a);
+    int v = findBook(b);
+
+    if (u == -1 || v == -1 || u == v)
+    {
+        cout << "Invalid book names or link.\n";
+        return;
+    }
+
+    if (find(adj[u].begin(), adj[u].end(), v) != adj[u].end())
+    {
+        cout << "Link already exists.\n";
+        return;
+    }
+
+    adj[u].push_back(v);
+    adj[v].push_back(u);
+
+    cout << "Link added successfully.\n";
+}
+
+// Remove recommendation
+void removeLink()
+{
+    string a, b;
+    cout << "Enter two book names: ";
+    cin >> a >> b;
+
+    int u = findBook(a);
+    int v = findBook(b);
+
+    if (u == -1 || v == -1 || u == v)
+    {
+        cout << "Invalid book names or link.\n";
+        return;
+    }
+
+    auto it1 = find(adj[u].begin(), adj[u].end(), v);
+    auto it2 = find(adj[v].begin(), adj[v].end(), u);
+
+    if (it1 == adj[u].end())
+    {
+        cout << "Link not found.\n";
+        return;
+    }
+
+    adj[u].erase(it1);
+    adj[v].erase(it2);
+
+    cout << "Link removed successfully.\n";
+}
+
+// Find book with maximum recommendations
+void highestRecommendations()
+{
+    int maxCount = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (adj[i].size() > maxCount)
+            maxCount = adj[i].size();
+    }
+
+    cout << "Highest recommendation count: " << maxCount << "\n";
+    cout << "Book(s): ";
+
+    for (int i = 0; i < n; i++)
+    {
+        if (adj[i].size() == maxCount)
+            cout << books[i] << " ";
+    }
+
+    cout << "\n";
+}
+
+int main()
+{
+    int m, choice;
+
+    cout << "Enter number of books: ";
+    cin >> n;
+
+    books.resize(n);
+    adj.resize(n);
+
+    cout << "Enter book names:\n";
+    for (int i = 0; i < n; i++)
+        cin >> books[i];
+
+    cout << "Enter number of recommendation pairs: ";
+    cin >> m;
+
+    cout << "Enter pairs of book names:\n";
+
+    for (int i = 0; i < m; i++)
+    {
+        string a, b;
+        cin >> a >> b;
+
+        int u = findBook(a);
+        int v = findBook(b);
+
+        if (u != -1 && v != -1 && u != v)
+        {
+            if (find(adj[u].begin(), adj[u].end(), v) == adj[u].end())
+            {
+                adj[u].push_back(v);
+                adj[v].push_back(u);
+            }
+        }
+        else
+            cout << "Invalid pair.\n";
+    }
+
+    do
+    {
+        cout << "\n--- Book Recommendation System ---\n";
+        cout << "1. Display recommendations\n";
+        cout << "2. Add recommendation\n";
+        cout << "3. Remove recommendation\n";
+        cout << "4. Highest recommendations\n";
+        cout << "5. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+            case 1:
+                display();
+                break;
+
+            case 2:
+                addLink();
+                break;
+
+            case 3:
+                removeLink();
+                break;
+
+            case 4:
+                highestRecommendations();
+                break;
+
+            case 5:
+                cout << "Program ended.\n";
+                break;
+
+            default:
+                cout << "Invalid choice.\n";
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}
+
