@@ -1,1 +1,5 @@
-
+Objective
+To develop a C++ program using an adjacency list to represent books as vertices and recommendation links as edges, and to perform the following operations:
+Add a recommendation link between two books.
+Remove an outdated recommendation link.
+Display the book(s) having the highest number of direct recommendations.
