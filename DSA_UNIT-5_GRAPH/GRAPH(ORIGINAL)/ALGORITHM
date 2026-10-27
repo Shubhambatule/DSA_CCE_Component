@@ -1,12 +1,12 @@
-Algorithm:
-1.	Start the program.
-2.	Read the number of books and accept their names.
-3.	Create an adjacency list for all books.
-4.	Accept recommendation pairs and add valid links to the graph.
-5.	Display a menu for the available operations.
-6.	For display, print each book's adjacent books and count the links.
-7.	For add, validate the two book names and add the link if it does not already exist.
-8.	For remove, find the link and delete it from both adjacency lists.
-9.	For maximum recommendations, calculate each adjacency-list size and display all books with the maximumcount.
-10.	Repeat the menu until the user chooses Exit.
-11.	Stop the program.
+Algorithm
+Start.
+Declare an array to store book names and an adjacency list to store connections.
+Accept the number of books.
+Enter the names of all books.
+Accept the number of recommendation links.
+Enter the pairs of connected book numbers.
+Store each connection in the adjacency list in both directions.
+Display the recommendations for each book.
+Count the direct recommendations using the size of its adjacency list.
+Display the count for each book.
+Stop.
