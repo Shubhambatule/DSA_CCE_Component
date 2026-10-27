@@ -1,0 +1,151 @@
+
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main()
+{
+    int n, edges;
+    string book[20];
+    vector<int> adj[20];
+
+    cout << "Enter number of books: ";
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Enter book " << i + 1 << " name: ";
+        cin >> book[i];
+    }
+
+    cout << "Enter number of recommendation links: ";
+    cin >> edges;
+
+    cout << "Enter book number pairs:\n";
+
+    for (int i = 0; i < edges; i++)
+    {
+        int u, v;
+        cin >> u >> v;
+
+        adj[u - 1].push_back(v - 1);
+        adj[v - 1].push_back(u - 1);
+    }
+
+    int choice;
+
+    do
+    {
+        cout << "\n1. Add recommendation link";
+        cout << "\n2. Remove recommendation link";
+        cout << "\n3. Display most recommended books";
+        cout << "\n4. Display all recommendations";
+        cout << "\n5. Exit";
+        cout << "\nEnter choice: ";
+        cin >> choice;
+
+        if (choice == 1)
+        {
+            int u, v;
+            cout << "Enter two book numbers: ";
+            cin >> u >> v;
+
+            if (u < 1 || u > n || v < 1 || v > n || u == v)
+            {
+                cout << "Invalid book numbers!\n";
+                continue;
+            }
+
+            bool exists = false;
+
+            for (int x : adj[u - 1])
+                if (x == v - 1)
+                    exists = true;
+
+            if (exists)
+                cout << "Link already exists!\n";
+            else
+            {
+                adj[u - 1].push_back(v - 1);
+                adj[v - 1].push_back(u - 1);
+                cout << "Recommendation link added.\n";
+            }
+        }
+
+        else if (choice == 2)
+        {
+            int u, v;
+            cout << "Enter two book numbers: ";
+            cin >> u >> v;
+
+            if (u < 1 || u > n || v < 1 || v > n || u == v)
+            {
+                cout << "Invalid book numbers!\n";
+                continue;
+            }
+
+            bool found = false;
+
+            for (int i = 0; i < adj[u - 1].size(); i++)
+            {
+                if (adj[u - 1][i] == v - 1)
+                {
+                    adj[u - 1].erase(adj[u - 1].begin() + i);
+                    found = true;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < adj[v - 1].size(); i++)
+            {
+                if (adj[v - 1][i] == u - 1)
+                {
+                    adj[v - 1].erase(adj[v - 1].begin() + i);
+                    break;
+                }
+            }
+
+            if (found)
+                cout << "Recommendation link removed.\n";
+            else
+                cout << "Link not found!\n";
+        }
+
+        else if (choice == 3)
+        {
+            int maxCount = 0;
+
+            for (int i = 0; i < n; i++)
+                if (adj[i].size() > maxCount)
+                    maxCount = adj[i].size();
+
+            cout << "Book(s) with highest direct recommendations:\n";
+
+            for (int i = 0; i < n; i++)
+                if (adj[i].size() == maxCount)
+                    cout << book[i] << " - "
+                         << adj[i].size() << " recommendations\n";
+        }
+
+        else if (choice == 4)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                cout << book[i] << ": ";
+
+                for (int x : adj[i])
+                    cout << book[x] << " ";
+
+                cout << "\nDirect recommendations: "
+                     << adj[i].size() << "\n";
+            }
+        }
+
+        else if (choice != 5)
+            cout << "Invalid choice!\n";
+
+    } while (choice != 5);
+
+    return 0;
+}
