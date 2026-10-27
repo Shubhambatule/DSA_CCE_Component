@@ -1,6 +1,2 @@
-Problem Statement:
-Develop a C++ program to represent books as vertices and recommendation links as edges in a graph. 
-Store the graph using an adjacency list. Accept book names and recommendation pairs from the user,
-display the recommendations for each book, and count the direct recommendations associated with each book.
-The program must also support adding a recommendation link, removing an outdated link,
-and displaying the book or books with the highest number of direct recommendations.
+Problem Statement:Develop a C++ program to represent books as vertices and recommendation links as edges. Store the graph using an adjacency list. Accept the book names and recommendation pairs, display the recommendations for each book, and count the direct recommendations associated with each book.
+
