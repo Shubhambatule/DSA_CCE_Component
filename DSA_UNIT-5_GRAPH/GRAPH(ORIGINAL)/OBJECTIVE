@@ -1,6 +1,2 @@
-Objectives:
-•	Understand vertices, edges, and graph representation.
-•	Represent a graph using an adjacency list in C++.
-•	Display direct recommendations and count them for each book.
-•	Add and remove recommendation links dynamically.
-•	Find the book or books with the maximum number of direct recommendations.
+Objective
+To develop a C++ program to represent books as vertices and recommendation links as edges using an adjacency list, display the recommendations for each book, and count the direct recommendations associated with each book.
