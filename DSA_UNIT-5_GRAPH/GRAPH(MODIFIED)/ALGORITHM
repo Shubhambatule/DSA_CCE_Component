@@ -1,1 +1,18 @@
-
+1.Start.
+2.Declare an array to store book names and an adjacency list to store connections.
+3.Accept the number of books and their names.
+4.Accept the number of recommendation links.
+5.Store each link in both books' adjacency lists.
+6.Display a menu with the following options:
+Add a recommendation link.
+Remove a recommendation link.
+Display books with the highest recommendations.
+Display all recommendations.
+Exit.
+7.Accept the user's choice.
+8..If the choice is 1, accept two book numbers and add the link if it does not already exist.
+If the choice is 2, accept two book numbers and 9.remove the link from both adjacency lists.
+10.If the choice is 3, find the maximum number of direct recommendations and display all books having that count.
+11.If the choice is 4, display the recommendations and direct recommendation count for each book.
+Repeat the menu until the user selects Exit.
+Stop.
