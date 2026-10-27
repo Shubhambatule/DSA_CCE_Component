@@ -1,12 +1,12 @@
 Algorithm
-Start.
-Declare an array to store book names and an adjacency list to store connections.
-Accept the number of books.
-Enter the names of all books.
-Accept the number of recommendation links.
-Enter the pairs of connected book numbers.
-Store each connection in the adjacency list in both directions.
-Display the recommendations for each book.
-Count the direct recommendations using the size of its adjacency list.
-Display the count for each book.
-Stop.
+1.Start.
+2.Declare an array to store book names and an adjacency list to store connections.
+3.Accept the number of books.
+4.Enter the names of all books.
+5.Accept the number of recommendation links.
+6.Enter the pairs of connected book numbers.
+7.Store each connection in the adjacency list in both directions.
+8.Display the recommendations for each book.
+9.Count the direct recommendations using the size of its adjacency list.
+10.Display the count for each book.
+11.Stop.
